@@ -73,4 +73,41 @@ VALUES
 
 
 -- Problem 1
+INSERT INTO rangers (name, region)
+VALUES ('Derek Fox', 'Coastal Plains');
 
+-- Problem 2
+select count(DISTINCT species_id) from sightings;
+
+
+-- Problem 3
+select * from sightings
+WHERE location LIKE '%Pass%';
+
+-- Problem 4
+select name, count(*) as total_sightings
+from rangers
+JOIN sightings ON rangers.ranger_id = sightings.ranger_id
+GROUP BY name;
+
+
+-- Problem 5
+SELECT common_name
+from species
+WHERE NOT EXISTS (
+    SELECT * from sightings
+    WHERE sightings.species_id = species.species_id 
+);
+
+
+-- Problem 6
+SELECT common_name, sighting_time, name 
+from (SELECT * from sightings ORDER BY sighting_time DESC LIMIT 2) AS RecentTwoSightings
+JOIN species ON species.species_id = RecentTwoSightings.species_id
+JOIN rangers ON rangers.ranger_id = RecentTwoSightings.ranger_id;
+
+
+-- Problem 7
+UPDATE species
+SET conservation_status = 'Historic'
+WHERE discovery_date < '1800-01-01';
