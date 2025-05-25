@@ -88,6 +88,39 @@ VARCHAR(n) হলো PostgresQL-এ একটি ডাটাটাইপ।
 <h2 id="topic-4">PostgresQL-এ SELECT স্টেটমেন্টের সাথে WHERE ক্লজের উদ্দেশ্য কী?</h2>
 <a href="#topics" style="text-decoration: none;">টপিকসমূহ</a>
 
+
+SQL ল্যাঙ্গুয়েজে যে SELECT স্টেটমেন্ট বা SELECT কীওয়ার্ড, এটা আসলে Projection অপারেশনের কাজ করে। Projection মানে, আউটপুটে কোন কোন কলাম বা ডাটা থাকবে, তা।
+
+অন্যদিকে, RDBMS-এর তত্ত্বে, এক বা একাধিক টেবিল থেকে স্পেসিফিক কিছু রো বা টাপল Selection-এর যে অপারেশন, সে অপারেশন করে SELECT স্টেটমেন্টের WHERE ক্লজ।
+
+এক বা একাধিক টেবিলের অনেক অনেক রো বা টাপল থেকে বিশেষ শর্ত মানে, এমন রো বা টাপল সিলেক্ট করতে বা (Informally Speaking) ফিল্টার করতে আমরা WHERE ক্লজ ব্যবহার করি।
+
+```sql
+SELECT * from table_name
+WHERE condition;
+```
+
+এই condition-এর বৈচিত্র্যই WHERE ক্লজের শক্তি।
+
+সিলেকশনে নিয়ন্ত্রণের স্বার্থে আমরা টেবিলের ডাটার ওপর ব্যাপক ধরণের condition প্রয়োগ করতে পারি। এই ব্যাপকতা ও সূক্ষ্ম নিয়ন্ত্রণ আসে WHERE ক্লজের condition-এ ব্যবহার্য বিভিন্ন রকম অপারেটর থেকে। >, <, <>, = ইত্যাদি।
+
+1) condition লিখতে আমরা ব্যবহার করতে পারি Arithmetic Comparison Operators। এগুলো নিউমেরিক, টেক্সট ও ডেট-টাইম ডাটার ওপর কাজ করে, এবং এভাবে আমাদেরকে বৈচিত্র্যময় ও সূক্ষ্ম condition লিখার সুযোগ করে দেয়।
+
+2) condition-গুলো কেবল single condition না। Logical Operator (AND, OR, NOT) থাকার কারণে আমরা compound condition লিখতে পারি। ফলে, ডাটা ফিল্টারে আমাদের সূক্ষ্মতা বাড়ে।
+
+3) condition-এর ভেতর আমরা কোনো ডাটার ওপর Set Check-ও করতে পারি। IN ও NOT IN অপারেটর দিয়ে।
+
+4) condition-এর ভেতর আমরা কোনো ডাটার ওপর Set Check-ও করতে পারি। BETWEEN.... AND অপারেটর দিয়ে।
+
+5) condition-এ Text ডাটার ওপর Pattern Matching-ও করতে পারি। LIKE, ILIKE দিয়ে।
+
+6) condition-এ Arithmetic Expression-ও অনুমোদিত। যেমন salary * 2 < 1000।
+
+7) Last, but the least: Subquery-ও লিখা যায় condition-এ।
+
+
+তো বুঝতেই পারছো যে, WHERE ক্লজের শক্তি কতটা বিচিত্র, ব্যাপক ও সূক্ষ্ম, ডাটা ফিল্টারের জন্য।
+
 <h2 id="topic-5">PostgresQL-এ LIMIT ও OFFSET ক্লজগুলো কেন ব্যবহার করা হয়?</h2>
 <a href="#topics" style="text-decoration: none;">টপিকসমূহ</a>
 
