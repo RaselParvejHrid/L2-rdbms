@@ -110,13 +110,13 @@ WHERE condition;
 
 3) condition-এর ভেতর আমরা কোনো ডাটার ওপর Set Check-ও করতে পারি। IN ও NOT IN অপারেটর দিয়ে।
 
-4) condition-এর ভেতর আমরা কোনো ডাটার ওপর Set Check-ও করতে পারি। BETWEEN.... AND অপারেটর দিয়ে।
+4) condition-এর ভেতর আমরা কোনো ডাটার ওপর Range Check-ও করতে পারি। BETWEEN.... AND অপারেটর দিয়ে।
 
 5) condition-এ Text ডাটার ওপর Pattern Matching-ও করতে পারি। LIKE, ILIKE দিয়ে।
 
 6) condition-এ Arithmetic Expression-ও অনুমোদিত। যেমন salary * 2 < 1000।
 
-7) Last, but the least: Subquery-ও লিখা যায় condition-এ।
+7) Last, but the least: Subquery-ও লিখা যায় condition-এ!
 
 
 তো বুঝতেই পারছো যে, WHERE ক্লজের শক্তি কতটা বিচিত্র, ব্যাপক ও সূক্ষ্ম, ডাটা ফিল্টারের জন্য।
