@@ -111,3 +111,19 @@ JOIN rangers ON rangers.ranger_id = RecentTwoSightings.ranger_id;
 UPDATE species
 SET conservation_status = 'Historic'
 WHERE discovery_date < '1800-01-01';
+
+
+-- Problem 8
+SELECT sighting_id,
+CASE 
+    WHEN extract(hour from sighting_time) < 12 THEN 'Morning'  
+    WHEN extract(hour from sighting_time) > 17 THEN 'Evening'  
+    ELSE  'Afternoon'
+END AS time_of_day
+from sightings;
+
+
+-- Problem 9
+DELETE from rangers
+WHERE ranger_id
+NOT IN (SELECT ranger_id from sightings);
